@@ -18,6 +18,8 @@ impl CPU {
   }
 
   pub fn process_instruction(instr: Instruction) {
-    unimplemented!()
+    match instr {
+      _ => {},
+    }
   }
 }

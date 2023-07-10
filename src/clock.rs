@@ -1,4 +1,5 @@
 
+#[derive(Debug)]
 pub struct Clock {
   m: usize,
   t: usize,
