@@ -1,12 +1,11 @@
 
 // ===== Imports =====
-use crate::{registers::Registers, clock::Clock, instructions::Instruction};
+use crate::{registers::Registers, clock::Clock};
 // ===================
 
-
 pub struct CPU {
-  registers: Registers,
-  clock: Clock,
+  pub registers: Registers,
+  pub clock: Clock,
 }
 
 impl CPU {
@@ -14,12 +13,6 @@ impl CPU {
     Self {
       registers: Registers::new(),
       clock: Clock::new(),
-    }
-  }
-
-  pub fn process_instruction(instr: Instruction) {
-    match instr {
-      _ => {},
     }
   }
 }
