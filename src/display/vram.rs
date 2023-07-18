@@ -17,10 +17,10 @@ impl VideoRAM {
   }
 }
 
-impl Index<usize> for VideoRAM {
+impl Index<u16> for VideoRAM {
   type Output = u8;
 
-  fn index(&self, index: usize) -> &Self::Output {
+  fn index(&self, index: u16) -> &Self::Output {
     &self.byts[index]
   }
 }

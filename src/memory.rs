@@ -11,14 +11,14 @@ const INTERNAL_RAM1: usize = 0x7F; // More Internal RAM
 pub struct Memory {
   io: IO,
   display: Display,
-  cartridge: Cartridge, // 32kB Cartridge (0x0000 - 0x8000)
+  cartridge: Box<dyn Cartridge>, // 32kB Cartridge (0x0000 - 0x8000)
   internal_ram0: [u8; INTERNAL_RAM0], // 8kB Internal RAM
   internal_ram1: [u8; INTERNAL_RAM1], // More Internal RAM
   interrupt_enable_register: u8,
 }
 
 impl Memory {
-  pub fn get(&self, pos: usize) -> u8 {
+  pub fn get(&self, pos: u16) -> u8 {
     if (0x0000..0x8000).contains(&pos) { // 32kB Cartridge
       self.cartridge.get(pos)
     } else if (0x8000..0xA000).contains(&pos) { // 8kB VRAM

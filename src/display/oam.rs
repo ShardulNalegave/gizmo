@@ -17,10 +17,10 @@ impl ObjectAttribMemory {
   }
 }
 
-impl Index<usize> for ObjectAttribMemory {
+impl Index<u16> for ObjectAttribMemory {
   type Output = u8;
 
-  fn index(&self, index: usize) -> &Self::Output {
+  fn index(&self, index: u16) -> &Self::Output {
     &self.byts[index]
   }
 }
