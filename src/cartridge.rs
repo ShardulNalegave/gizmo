@@ -33,7 +33,7 @@ impl Cartridge {
     self.byts.len()
   }
 
-  pub fn get_byte(&self, pos: usize) -> u8 {
+  pub fn get(&self, pos: usize) -> u8 {
     self.byts[pos]
   }
 }

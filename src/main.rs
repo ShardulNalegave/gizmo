@@ -1,12 +1,15 @@
 
+mod io;
+mod display;
 mod cpu;
 mod clock;
+mod memory;
 mod registers;
 mod instructions;
 mod cartridge;
 
 // ===== Imports =====
-use std::{fs::File, io::Read, env};
+use std::{env, fs::File, io::Read};
 use crate::cartridge::Cartridge;
 use crate::instructions::Instructions;
 use crate::registers::Register;
@@ -26,7 +29,7 @@ fn main() {
   let mut gb_cpu = cpu::CPU::new();
 
   while gb_cpu.registers.get_u16(Register::PC) < cart.len() as u16 {
-    let byt = cart.get_byte(gb_cpu.registers.get_u16(Register::PC) as usize);
+    let byt = cart.get(gb_cpu.registers.get_u16(Register::PC) as usize);
     Instructions::execute(byt, &cart, &mut gb_cpu.registers);
   }
 }
