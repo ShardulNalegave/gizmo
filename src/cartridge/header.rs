@@ -1,9 +1,13 @@
 
 // ===== Imports =====
 use anyhow::Result;
-use crate::cartridge::cart_type::{CartridgeType, get_cartridge_type};
+use crate::cartridge::{
+  ROM_BANK_SIZE, RAM_BANK_SIZE,
+  cart_type::{CartridgeType, get_cartridge_type},
+};
 // ===================
 
+#[derive(Clone, Debug)]
 pub struct CartridgeHeader {
   pub title: String,
   pub cart_type: CartridgeType,
@@ -25,7 +29,6 @@ impl CartridgeHeader {
   }
 }
 
-pub const ROM_BANK_SIZE: usize = 16 * 1024;
 fn get_rom_details(code: u8) -> (usize, usize) { // (No. of ROM Banks, ROM Size)
   match code {
     0x0000 => (2, 2 * ROM_BANK_SIZE),
@@ -41,7 +44,6 @@ fn get_rom_details(code: u8) -> (usize, usize) { // (No. of ROM Banks, ROM Size)
   }
 }
 
-pub const RAM_BANK_SIZE: usize = 8 * 1024;
 fn get_ram_details(code: u8) -> (usize, usize) { // (No. of RAM Banks, RAM Size)
   match code {
     0x0000 => (0, 0),

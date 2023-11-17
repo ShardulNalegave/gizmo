@@ -4,6 +4,7 @@ use anyhow::{Result, anyhow};
 use crate::cartridge::CartridgeError;
 // ===================
 
+#[derive(Clone, Copy, Debug)]
 pub enum CartridgeType {
   ROM,
   MBC1,
