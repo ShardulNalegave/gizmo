@@ -17,6 +17,12 @@ pub const Registers = struct {
     sp: u16,
     pc: u16,
 
+    pub fn new() Registers {
+        return Registers{
+            // TODO: Put init values
+        };
+    }
+
     pub fn af(self: *Registers) u16 {
         return (self.a << 8) | self.f;
     }
