@@ -1,8 +1,8 @@
 pub const Flags = enum(u8) {
-    CARRY = 0b00010000,
-    HALF_CARRY = 0b00100000,
-    SUBTRACTION = 0b01000000,
-    ZERO = 0b10000000,
+    CARRY = 0b0001_0000,
+    HALF_CARRY = 0b0010_0000,
+    SUBTRACTION = 0b0100_0000,
+    ZERO = 0b1000_0000,
 };
 
 pub const Registers = struct {

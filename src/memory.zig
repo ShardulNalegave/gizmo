@@ -1,65 +1,67 @@
-const constants = @import("./memory/constants.zig");
+const vram = @import("./vram.zig");
+const oam = @import("./graphics/oam.zig");
+const io = @import("./io.zig");
 
-pub const MemoryError = error{
-    InvalidMemoryAddress,
-};
+pub const WRAM_OFFSET = 0xC000;
+pub const WRAM_LEN = 0xE000 - 0xC000;
 
 pub const Memory = struct {
-    wram: [constants.ECHO_RAM - constants.WRAM]u8,
+    wram: [WRAM_LEN]u8,
+    ie: u8,
 
     pub fn new() Memory {
         return Memory{};
     }
 
-    pub fn get(self: *Memory, index: u16) MemoryError!u8 {
+    pub fn get(self: *Memory, index: u16) u8 {
         switch (index) {
-            constants.ROM_BANK_00...constants.ROM_BANK_SELECTABLE => {
+            0x0000...0x4000 => {
                 //
             },
 
-            constants.ROM_BANK_SELECTABLE...constants.VRAM => {
+            0x4000...0x8000 => {
                 //
             },
 
-            constants.VRAM...constants.EXTERNAL_RAM => {
+            vram.VRAM_OFFSET...0xA000 => {
                 //
             },
 
-            constants.EXTERNAL_RAM...constants.WRAM => {
+            0xA000...0xC000 => {
                 //
             },
 
-            constants.WRAM...constants.ECHO_RAM => {
-                return self.wram[index - constants.WRAM];
+            WRAM_OFFSET...0xE000 => {
+                return self.wram[index - WRAM_OFFSET];
             },
 
-            constants.ECHO_RAM...constants.OAM => {
+            0xE000...0xFE00 => {
                 // 0xE000-0xFDFF is basically mapped to 0xC000-0xDDFF
-                return self.wram[index - constants.ECHO_RAM];
+                return self.wram[index - 0xE000];
             },
 
-            constants.OAM...0xFEA0 => {
+            oam.OAM_OFFSET...0xFEA0 => {
+                // OAM
+            },
+
+            0xFEA0...0xFF00 => {
                 // not usable
                 return 0x00;
             },
 
-            0xFEA0...constants.IO_REGISTERS => {
+            io.IO_REGISTERS_OFFSET...0xFF80 => {
                 //
             },
 
-            constants.IO_REGISTERS...constants.HRAM => {
-                //
+            0xFF80...0xFFFF => {
+                // HRAM
             },
 
-            constants.HRAM...constants.INTERRUPT_ENABLE_REGISTER => {
-                //
+            0xFFFF => {
+                return self.ie;
             },
 
-            constants.INTERRUPT_ENABLE_REGISTER => {
-                //
-            },
-
-            else => return MemoryError.InvalidMemoryAddress,
+            else => unreachable,
         }
     }
 };
