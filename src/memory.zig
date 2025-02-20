@@ -1,6 +1,7 @@
 const vram = @import("./vram.zig");
 const oam = @import("./graphics/oam.zig");
 const io = @import("./io.zig");
+const cartridge = @import("./cartridge.zig");
 
 pub const WRAM_OFFSET = 0xC000;
 pub const WRAM_LEN = 0xE000 - 0xC000;
@@ -8,19 +9,18 @@ pub const WRAM_LEN = 0xE000 - 0xC000;
 pub const Memory = struct {
     wram: [WRAM_LEN]u8,
     ie: u8,
+    cartridge: cartridge.Cartridge,
 
-    pub fn new() Memory {
-        return Memory{};
+    pub fn new(cart: cartridge.Cartridge) Memory {
+        return Memory{
+            .cartridge = cart,
+        };
     }
 
     pub fn get(self: *Memory, index: u16) u8 {
         switch (index) {
-            0x0000...0x4000 => {
-                //
-            },
-
-            0x4000...0x8000 => {
-                //
+            0x0000...0x8000 => {
+                return self.cartridge.get(index);
             },
 
             vram.VRAM_OFFSET...0xA000 => {

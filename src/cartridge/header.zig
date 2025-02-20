@@ -1,10 +1,11 @@
 pub const CartridgeHeader = struct {
     title: [0x143 - 0x134]u8,
     manufacturer_code: [0x142 - 0x13F]u8,
-    licensee_code: [0x145 - 0x144]u8,
     cartridge_type: CartridgeType,
     rom_banks: u10,
     ram_banks: u5,
+    mask_rom_version_number: u8,
+    header_checksum: u8,
 };
 
 pub const CartridgeType = enum(u8) {
