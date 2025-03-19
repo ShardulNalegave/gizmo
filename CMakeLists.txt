@@ -6,4 +6,4 @@ set(c_srcs
 )
 
 add_executable(gizmo ${c_srcs})
-target_include_directories(gizmo PRIVATE "src")
+target_include_directories(gizmo PRIVATE "include")
