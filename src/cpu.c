@@ -1,5 +1,4 @@
 
-#include "gizmo/registers.h"
 #include "gizmo/cpu.h"
 
 gizmo_cpu_t cpu;

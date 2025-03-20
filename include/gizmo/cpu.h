@@ -3,7 +3,7 @@
 #define GIZMO_CPU_H
 
 #include "stdbool.h"
-#include "gizmo/registers.h"
+#include "gizmo/cpu/registers.h"
 
 typedef struct {
     registers_t registers;
