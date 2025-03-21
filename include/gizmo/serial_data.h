@@ -5,8 +5,8 @@
 #include "stdint.h"
 
 typedef struct {
-    int8_t serial_data;
-    int8_t serial_transfer_control;
+    uint8_t serial_data;                // SB - 0xFF01
+    uint8_t serial_transfer_control;    // SC - 0xFF02
 } gizmo_io_serial_data_t;
 
 #endif

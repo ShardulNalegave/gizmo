@@ -3,8 +3,9 @@
 #define GIZMO_IO_H
 
 #include "stdint.h"
-#include "gizmo/io/serial_data.h"
-#include "gizmo/io/timer_divider.h"
+#include "gizmo/serial_data.h"
+#include "gizmo/timer_divider.h"
+#include "gizmo/audio.h"
 
 typedef enum {
     JOYPAD_DOWN = 0b11100111,
@@ -27,10 +28,13 @@ typedef enum {
 } interrupt_flag_t;
 
 typedef struct {
-    int8_t joypad;
-    gizmo_io_serial_data_t serial_data;
-    gizmo_io_timer_divider_t timer_divider;
-    int8_t interrupt_flag;
+    int8_t joypad;                              // 0xFF00
+    gizmo_io_serial_data_t serial_data;         // 0xFF01-0xFF02
+    gizmo_io_timer_divider_t timer_divider;     // 0xFF04-0xFF07
+    int8_t interrupt_flag;                      // 0xFF0F
+    gizmo_audio_t audio;                        // 0xFF10-0xFF26 and 0xFF30-0xFF3F
+    // TODO: Add LCD registers (0xFF40-0xFF4B)
+    uint8_t boot_rom_disable;                   // 0xFF50
 } gizmo_io_t;
 
 #endif

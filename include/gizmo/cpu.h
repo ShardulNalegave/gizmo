@@ -3,13 +3,12 @@
 #define GIZMO_CPU_H
 
 #include "stdbool.h"
-#include "gizmo/cpu/registers.h"
+#include "gizmo/registers.h"
+#include "gizmo/memory.h"
 
 typedef struct {
-    registers_t registers;
+    gizmo_registers_t registers;
+    gizmo_memory_t memory;
 } gizmo_cpu_t;
-
-void gizmo_cpu_init();
-bool gizmo_cpu_is_flag_set(uint8_t f);
 
 #endif

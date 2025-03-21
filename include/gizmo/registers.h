@@ -42,6 +42,6 @@ typedef struct {
     };
     uint16_t sp;
     uint16_t pc;
-} registers_t;
+} gizmo_registers_t;
 
 #endif

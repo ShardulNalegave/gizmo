@@ -13,10 +13,10 @@ typedef enum {
 } timer_control_t;
 
 typedef struct {
-    int8_t divider;             // DIV
-    int8_t timer_counter;       // TIMA
-    int8_t timer_modulo;        // TMA
-    int8_t timer_control;       // TAC
+    uint8_t divider;             // DIV - 0xFF04
+    uint8_t timer_counter;       // TIMA - 0xFF05
+    uint8_t timer_modulo;        // TMA - 0xFF06
+    uint8_t timer_control;       // TAC - 0xFF07
 } gizmo_io_timer_divider_t;
 
 #endif
