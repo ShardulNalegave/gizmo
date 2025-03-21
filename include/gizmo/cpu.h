@@ -11,4 +11,6 @@ typedef struct {
     gizmo_memory_t memory;
 } gizmo_cpu_t;
 
+gizmo_cpu_t* gizmo_cpu_init();
+
 #endif
