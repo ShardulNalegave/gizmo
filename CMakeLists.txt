@@ -17,8 +17,11 @@ target_link_libraries(gizmo log-c)
 
 # =========================================================================
 
-add_executable(gizmo-app "src-app/main.cc")
+add_executable(gizmo-app
+    "src-app/main.cc"
+    "src-app/state.cc")
 target_link_libraries(gizmo-app PRIVATE gizmo SDL3::SDL3 log-c imgui)
+target_include_directories(gizmo-app PRIVATE "src-app")
 
 # =========================================================================
 
