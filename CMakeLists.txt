@@ -10,7 +10,7 @@ add_subdirectory(vendor/imgui EXCLUDE_FROM_ALL)
 
 # =========================================================================
 
-set(gizmo_srcs "src/cpu.c")
+set(gizmo_srcs "src/cpu.c" "src/memory.c")
 add_library(gizmo ${gizmo_srcs})
 target_include_directories(gizmo PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 target_link_libraries(gizmo log-c)

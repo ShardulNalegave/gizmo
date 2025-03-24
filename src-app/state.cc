@@ -54,7 +54,8 @@ bool GizmoState::init() {
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;   // Enable Keyboard Controls
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;    // Enable Gamepad Controls
     io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;     // Enable Multi-Viewports
-    // io.ConfigFlags &= ~ImGuiConfigFlags_DockingEnable;      // Disable docking
+    io.ConfigFlags &= ~ImGuiConfigFlags_DockingEnable;      // Disable docking
+    // io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;       // Enable docking
 
     ImGui::StyleColorsDark();
 
@@ -69,6 +70,7 @@ void GizmoState::shutdown() {
     SDL_Window* window = SDL_GL_GetCurrentWindow();
     SDL_GLContext gl_context = SDL_GL_GetCurrentContext();
 
+    ImGui::DestroyPlatformWindows();
     ImGui_ImplOpenGL3_Shutdown();
     ImGui_ImplSDL3_Shutdown();
     ImGui::DestroyContext();
@@ -95,27 +97,30 @@ void GizmoState::draw(SDL_Window* window) {
     ImGui_ImplSDL3_NewFrame();
     ImGui::NewFrame();
 
-    if (ImGui::BeginMainMenuBar()) {
-        ImGui::Text("Gizmo");
-        ImGui::Separator();
-        if (ImGui::BeginMenu("File")) {
-            if (ImGui::MenuItem("Open..", "Ctrl+O")) { /* Do stuff */ }
-            if (ImGui::MenuItem("Save", "Ctrl+S"))   { /* Do stuff */ }
-            ImGui::EndMenu();
-        }
-        ImGui::EndMainMenuBar();
-    }
+    // if (ImGui::BeginMainMenuBar()) {
+    //     ImGui::Text("Gizmo");
+    //     ImGui::Separator();
+    //     if (ImGui::BeginMenu("File")) {
+    //         if (ImGui::MenuItem("Open..", "Ctrl+O")) { /* Do stuff */ }
+    //         if (ImGui::MenuItem("Save", "Ctrl+S"))   { /* Do stuff */ }
+    //         ImGui::EndMenu();
+    //     }
+    //     ImGui::EndMainMenuBar();
+    // }
 
-    {
-        static int counter = 0;
-        ImGui::Begin("Hello, World!");
-        ImGui::Text("This is an example window.");
-        if (ImGui::Button("Click me"))
-            counter++;
-        ImGui::SameLine();
-        ImGui::Text("counter = %d", counter);
-        ImGui::End();
-    }
+    // {
+    //     static int counter = 0;
+    //     ImGui::Begin("Hello, World!");
+    //     ImGui::Text("This is an example window.");
+    //     if (ImGui::Button("Click me"))
+    //         counter++;
+    //     ImGui::SameLine();
+    //     ImGui::Text("counter = %d", counter);
+    //     ImGui::End();
+    // }
+
+    bool demo = true;
+    ImGui::ShowDemoWindow(&demo);
 
     ImGui::Render();
     glViewport(0, 0, 1280, 720);
@@ -123,11 +128,7 @@ void GizmoState::draw(SDL_Window* window) {
     glClear(GL_COLOR_BUFFER_BIT);
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
-    ImGuiIO& io = ImGui::GetIO(); (void)io;
-    if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable) {
-        ImGui::UpdatePlatformWindows();
-        ImGui::RenderPlatformWindowsDefault();
-    }
-
+    ImGui::UpdatePlatformWindows();
+    ImGui::RenderPlatformWindowsDefault();
     SDL_GL_SwapWindow(window);
 }

@@ -4,9 +4,11 @@
 
 #include "stdint.h"
 
-typedef struct {
+typedef struct gizmo_io_serial_data_t gizmo_io_serial_data_t;
+
+struct gizmo_io_serial_data_t {
     uint8_t serial_data;                // SB - 0xFF01
     uint8_t serial_transfer_control;    // SC - 0xFF02
-} gizmo_io_serial_data_t;
+};
 
 #endif

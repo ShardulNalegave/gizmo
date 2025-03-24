@@ -6,10 +6,12 @@
 #include "gizmo/registers.h"
 #include "gizmo/memory.h"
 
-typedef struct {
+typedef struct gizmo_cpu_t gizmo_cpu_t;
+
+struct gizmo_cpu_t {
     gizmo_registers_t registers;
     gizmo_memory_t memory;
-} gizmo_cpu_t;
+};
 
 gizmo_cpu_t* gizmo_cpu_init();
 

@@ -4,14 +4,17 @@
 
 #include "stdint.h"
 
-typedef enum {
+typedef enum flags_t flags_t;
+typedef struct gizmo_registers_t gizmo_registers_t;
+
+enum flags_t {
     FLAG_ZERO = 0b10000000,
     FLAG_SUBTRACT = 0b01000000,
     FLAG_HALF_CARRY = 0b00100000,
     FLAG_CARRY = 0b00010000,
-} flags_t;
+};
 
-typedef struct {
+struct gizmo_registers_t {
     union {
         struct {
             uint8_t a;
@@ -42,6 +45,6 @@ typedef struct {
     };
     uint16_t sp;
     uint16_t pc;
-} gizmo_registers_t;
+};
 
 #endif

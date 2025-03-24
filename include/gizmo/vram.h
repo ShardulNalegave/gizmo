@@ -4,8 +4,10 @@
 
 #include "stdint.h"
 
-typedef struct {
+typedef struct gizmo_vram_t gizmo_vram_t;
+
+struct gizmo_vram_t {
     uint8_t data[0x2000];
-} gizmo_vram_t;
+};
 
 #endif

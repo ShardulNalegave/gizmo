@@ -4,15 +4,19 @@
 
 #include "stdint.h"
 
-typedef enum {
+typedef enum audio_master_control_t audio_master_control_t;
+typedef enum sound_panning_t sound_panning_t;
+typedef struct gizmo_audio_t gizmo_audio_t;
+
+enum audio_master_control_t {
     AUDIO_MASTER_CONTROL_ON = 0b10000000,
     AUDIO_MASTER_CONTROL_CH4_ON = 0b00001000,
     AUDIO_MASTER_CONTROL_CH3_ON = 0b00000100,
     AUDIO_MASTER_CONTROL_CH2_ON = 0b00000010,
     AUDIO_MASTER_CONTROL_CH1_ON = 0b00000001,
-} audio_master_control_t;
+};
 
-typedef enum {
+enum sound_panning_t {
     SOUND_PANNING_CH4_LEFT = 0b10000000,
     SOUND_PANNING_CH3_LEFT = 0b01000000,
     SOUND_PANNING_CH2_LEFT = 0b00100000,
@@ -21,9 +25,9 @@ typedef enum {
     SOUND_PANNING_CH3_RIGHT = 0b00000100,
     SOUND_PANNING_CH2_RIGHT = 0b00000010,
     SOUND_PANNING_CH1_RIGHT = 0b00000001,
-} sound_panning_t;
+};
 
-typedef struct {
+struct gizmo_audio_t {
     // Global Control Registers
     uint8_t master_volume_and_vin_panning;   // NR50 - 0xFF24
     uint8_t sound_panning;                   // NR51 - 0xFF25
@@ -55,6 +59,6 @@ typedef struct {
     uint8_t channel_4_volume_and_envelope;          // NR42 - 0xFF21
     uint8_t channel_4_frequency_and_randomness;     // NR43 - 0xFF22
     uint8_t channel_4_control;                      // NR44 - 0xFF23
-} gizmo_audio_t;
+};
 
 #endif
