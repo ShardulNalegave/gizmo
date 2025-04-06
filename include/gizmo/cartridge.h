@@ -9,6 +9,8 @@
 #define CARTRIDGE_HEADER_TITLE_LEN 16
 
 typedef enum cartridge_type_t cartridge_type_t;
+typedef struct cartridge_header_t cartridge_header_t;
+typedef struct gizmo_cartridge_t gizmo_cartridge_t;
 
 enum cartridge_type_t {
     CARTRIDGE_TYPE_ROM_ONLY = 0x00,
@@ -40,5 +42,29 @@ enum cartridge_type_t {
     CARTRIDGE_TYPE_HuC3 = 0xFE,
     CARTRIDGE_TYPE_HuC1_RAM_BATTERY = 0xFF,
 };
+
+struct cartridge_header_t {
+    uint8_t* entry_point;               // 0x100-0x103
+    char* title;                        // 0x134-0x143
+    cartridge_type_t cartridge_type;    // 0x147
+};
+
+struct gizmo_cartridge_t {
+    cartridge_header_t header;
+    uint8_t (*read)(gizmo_cartridge_t*, uint16_t);
+    void (*write)(gizmo_cartridge_t*, uint16_t, uint8_t);
+    void* state;
+};
+
+gizmo_cartridge_t* gizmo_cartridge_init();
+void gizmo_cartridge_destroy(gizmo_cartridge_t*);
+
+static inline uint8_t gizmo_cartridge_read(gizmo_cartridge_t* cart, uint16_t addr) {
+    return cart->read(cart, addr);
+}
+
+static inline void gizmo_cartridge_write(gizmo_cartridge_t* cart, uint16_t addr, uint8_t val) {
+    return cart->write(cart, addr, val);
+}
 
 #endif // GIZMO_CARTRIDGE_H
