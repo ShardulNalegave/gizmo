@@ -1,7 +1,11 @@
 
-#include <iostream>
+#include "app.h"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    GizmoApp app;
+    if (app.init() != 0) return -1;
+
+    app.run();
+    
     return 0;
 }
