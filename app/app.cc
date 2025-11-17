@@ -99,11 +99,20 @@ int GizmoApp::init_imgui() {
     ImGui::StyleColorsDark();
     imguiIO_->ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
     imguiIO_->ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;
+    imguiIO_->ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+    imguiIO_->ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
 
     // scaling
     ImGuiStyle& style = ImGui::GetStyle();
     style.ScaleAllSizes(mainScale_);
     style.FontScaleDpi = mainScale_;
+    imguiIO_->ConfigDpiScaleFonts = true;
+    imguiIO_->ConfigDpiScaleViewports = true;
+
+    if (imguiIO_->ConfigFlags & ImGuiConfigFlags_ViewportsEnable) {
+        style.WindowRounding = 0.0f;
+        style.Colors[ImGuiCol_WindowBg].w = 1.0f;
+    }
 
     ImGui_ImplSDL3_InitForOpenGL(window_, glContext_);
     ImGui_ImplOpenGL3_Init(glslVersion_);
@@ -173,6 +182,14 @@ int GizmoApp::render() {
     glClear(GL_COLOR_BUFFER_BIT);
 
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
+    SDL_Window* backup_current_window = SDL_GL_GetCurrentWindow();
+    SDL_GLContext backup_current_context = SDL_GL_GetCurrentContext();
+
+    ImGui::UpdatePlatformWindows();
+    ImGui::RenderPlatformWindowsDefault();
+
+    SDL_GL_MakeCurrent(backup_current_window, backup_current_context);
     SDL_GL_SwapWindow(window_);
 
     return 0;

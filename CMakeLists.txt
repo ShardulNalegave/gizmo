@@ -8,7 +8,7 @@ add_subdirectory(vendor/imgui EXCLUDE_FROM_ALL)
 add_subdirectory(vendor/spdlog EXCLUDE_FROM_ALL)
 
 set(LIB_SRCS
-    src/registers.c)
+    src/cpu.c)
 
 add_library(gizmo STATIC ${LIB_SRCS})
 target_include_directories(gizmo PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src/include)
