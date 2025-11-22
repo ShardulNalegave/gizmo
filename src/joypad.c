@@ -1,8 +1,8 @@
 
 #include "gizmo/joypad.h"
-#include "gizmo/types.h"
 #include "gizmo/system.h"
-#include "stddef.h"
+#include "gizmo/interrupts.h"
+#include "stdlib.h"
 
 gizmo_joypad_t* gizmo_joypad_create(gizmo_system_t *sys) {
     gizmo_joypad_t *joypad = calloc(1, sizeof(gizmo_joypad_t));

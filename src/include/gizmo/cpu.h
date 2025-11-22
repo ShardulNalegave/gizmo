@@ -4,18 +4,16 @@
 
 #include "stdint.h"
 #include "stdbool.h"
+#include "gizmo/types.h"
 #include "gizmo/registers.h"
 
-// forward-decl
-typedef struct gizmo_system_s gizmo_system_t;
-
-typedef struct gizmo_cpu_s {
+struct gizmo_cpu_s {
     gizmo_registers_t reg;
     gizmo_system_t *sys;
     
     bool halted;
     bool stopped;
-} gizmo_cpu_t;
+};
 
 gizmo_cpu_t* gizmo_cpu_create(gizmo_system_t *sys);
 void gizmo_cpu_destroy(gizmo_cpu_t *cpu);

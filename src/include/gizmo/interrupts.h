@@ -4,11 +4,12 @@
 
 #include "stdint.h"
 #include "stdbool.h"
+#include "gizmo/types.h"
 
-typedef struct gizmo_interrupts_s {
+struct gizmo_interrupts_s {
     uint8_t ie;     // interrupt enable
     uint8_t if_;    // interrupt flags
-} gizmo_interrupts_t;
+};
 
 gizmo_interrupts_t* gizmo_interrupts_create(void);
 void gizmo_interrupts_destroy(gizmo_interrupts_t *interrupts);

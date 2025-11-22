@@ -4,9 +4,7 @@
 
 #include "stdint.h"
 #include "stdbool.h"
-
-// forward-decl
-typedef struct gizmo_system_s gizmo_system_t;
+#include "gizmo/types.h"
 
 typedef enum {
     PPU_MODE_HBLANK = 0,
@@ -22,7 +20,7 @@ typedef struct {
     uint8_t flags;
 } gizmo_oam_entry_t;
 
-typedef struct gizmo_ppu_s {
+struct gizmo_ppu_s {
     gizmo_system_t *sys;
     
     uint8_t vram[0x2000];
@@ -48,7 +46,7 @@ typedef struct gizmo_ppu_s {
     // Frame buffer: 160x144 pixels, each pixel 0-3 (2-bit color)
     uint8_t framebuffer[160 * 144];
     bool frame_ready;
-} gizmo_ppu_t;
+};
 
 gizmo_ppu_t* gizmo_ppu_create(gizmo_system_t *sys);
 void gizmo_ppu_destroy(gizmo_ppu_t *ppu);

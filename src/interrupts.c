@@ -1,7 +1,6 @@
 
 #include "gizmo/interrupts.h"
-#include "gizmo/types.h"
-#include "stddef.h"
+#include "stdlib.h"
 
 gizmo_interrupts_t* gizmo_interrupts_create(void) {
     gizmo_interrupts_t *interrupts = calloc(1, sizeof(gizmo_interrupts_t));

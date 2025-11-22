@@ -4,11 +4,9 @@
 
 #include "stdint.h"
 #include "stdbool.h"
+#include "gizmo/types.h"
 
-// forward-decl
-typedef struct gizmo_system_s gizmo_system_t;
-
-typedef struct gizmo_timer_s {
+struct gizmo_timer_s {
     gizmo_system_t *sys;
     
     // Registers
@@ -19,7 +17,7 @@ typedef struct gizmo_timer_s {
     
     uint16_t div_counter;  // Full 16-bit internal divider counter
     uint16_t tima_counter; // Internal counter for TIMA
-} gizmo_timer_t;
+};
 
 gizmo_timer_t* gizmo_timer_create(gizmo_system_t *sys);
 void gizmo_timer_destroy(gizmo_timer_t *timer);

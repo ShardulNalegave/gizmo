@@ -2,6 +2,15 @@
 #ifndef GIZMO_TYPES_H
 #define GIZMO_TYPES_H
 
+typedef struct gizmo_system_s gizmo_system_t;
+typedef struct gizmo_cpu_s gizmo_cpu_t;
+typedef struct gizmo_ppu_s gizmo_ppu_t;
+typedef struct gizmo_timer_s gizmo_timer_t;
+typedef struct gizmo_cartridge_s gizmo_cartridge_t;
+typedef struct gizmo_joypad_s gizmo_joypad_t;
+typedef struct gizmo_interrupts_s gizmo_interrupts_t;
+typedef struct gizmo_serial_t gizmo_serial_s;
+
 #define FLAG_ZERO   0x80  // Zero flag
 #define FLAG_SUB    0x40  // Subtract flag (BCD)
 #define FLAG_HALF   0x20  // Half-carry flag

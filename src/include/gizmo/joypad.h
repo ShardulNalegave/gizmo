@@ -4,15 +4,12 @@
 
 #include "stdint.h"
 #include "stdbool.h"
+#include "gizmo/types.h"
 
-// forward-decl
-typedef struct gizmo_system_s gizmo_system_t;
-
-typedef struct gizmo_joypad_s {
-    gizmo_system_t *sys;
-    
+struct gizmo_joypad_s {
+    gizmo_system_t *sys;    
     uint8_t reg;      // 0xFF00
-} gizmo_joypad_t;
+};
 
 gizmo_joypad_t* gizmo_joypad_create(gizmo_system_t *sys);
 void gizmo_joypad_destroy(gizmo_joypad_t *joypad);

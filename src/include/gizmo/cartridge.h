@@ -5,6 +5,7 @@
 #include "stdint.h"
 #include "stdbool.h"
 #include "stddef.h"
+#include "gizmo/types.h"
 
 typedef enum {
     CART_ROM_ONLY = 0x00,
@@ -19,7 +20,7 @@ typedef enum {
     CART_MBC5_RAM_BATTERY = 0x1B,
 } gizmo_cart_type_t;
 
-typedef struct gizmo_cartridge_s {
+struct gizmo_cartridge_s {
     uint8_t *rom;           // Full ROM data
     size_t rom_size;        // ROM size in bytes
     uint8_t *ram;           // External RAM (if present)
@@ -38,7 +39,7 @@ typedef struct gizmo_cartridge_s {
     
     // Header info
     char title[16];
-} gizmo_cartridge_t;
+};
 
 gizmo_cartridge_t* gizmo_cartridge_create(void);
 void gizmo_cartridge_destroy(gizmo_cartridge_t *cart);
