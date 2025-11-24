@@ -11,10 +11,13 @@ set(LIB_SRCS
     src/cpu.c
     src/timer.c
     src/interrupts.c
-    src/joypad.c)
+    src/joypad.c
+    src/cartridge.c
+    src/log.cc)
 
 add_library(gizmo STATIC ${LIB_SRCS})
 target_include_directories(gizmo PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src/include)
+target_link_libraries(gizmo PRIVATE spdlog::spdlog)
 
 set(APP_SRCS
     app/main.cc

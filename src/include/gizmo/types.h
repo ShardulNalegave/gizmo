@@ -42,4 +42,15 @@ typedef struct gizmo_serial_t gizmo_serial_s;
 #define JOYPAD_UP     0b11101011
 #define JOYPAD_DOWN   0b11100111
 
+#define CART_HEADER_TITLE           0x0134
+#define CART_HEADER_CARTRIDGE_TYPE  0x0147
+#define CART_HEADER_ROM_SIZE        0x0148
+#define CART_HEADER_RAM_SIZE        0x0149
+
+#define CART_SRAM_BANKS_0   0x00
+#define CART_SRAM_BANKS_1   0x02
+#define CART_SRAM_BANKS_4   0x03
+#define CART_SRAM_BANKS_8   0x05
+#define CART_SRAM_BANKS_16  0x04
+
 #endif
