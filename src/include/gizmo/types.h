@@ -22,6 +22,16 @@ typedef struct gizmo_serial_t gizmo_serial_s;
 #define INT_SERIAL  0x08  // Serial interrupt
 #define INT_JOYPAD  0x10  // Joypad interrupt
 
+#define TIMER_DIV   0xFF04
+#define TIMER_TIMA  0xFF05
+#define TIMER_TMA   0xFF06
+#define TIMER_TAC   0xFF07
+
+#define TIMER_CLOCK_4_M_CYCLES      0b01
+#define TIMER_CLOCK_16_M_CYCLES     0b10
+#define TIMER_CLOCK_64_M_CYCLES     0b11
+#define TIMER_CLOCK_256_M_CYCLES    0b00
+
 #define JOYPAD_A      0b11011110
 #define JOYPAD_B      0b11011101
 #define JOYPAD_SELECT 0b11011011

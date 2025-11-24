@@ -9,6 +9,7 @@ add_subdirectory(vendor/spdlog EXCLUDE_FROM_ALL)
 
 set(LIB_SRCS
     src/cpu.c
+    src/timer.c
     src/interrupts.c
     src/joypad.c)
 
