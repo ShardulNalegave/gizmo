@@ -15,8 +15,8 @@ struct gizmo_system_s {
     gizmo_joypad_t *joypad;
     gizmo_interrupts_t *interrupts;
     
-    uint8_t wram[0x2000];
-    uint8_t hram[0x7F];
+    uint8_t wram[WRAM_LEN];
+    uint8_t hram[HRAM_LEN];
     
     uint64_t cycles;
     bool running;

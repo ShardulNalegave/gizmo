@@ -53,4 +53,46 @@ typedef struct gizmo_serial_t gizmo_serial_s;
 #define CART_SRAM_BANKS_8   0x05
 #define CART_SRAM_BANKS_16  0x04
 
+#define ROM_BANK_0_START    0x0000
+#define ROM_BANK_0_END      0x3FFF
+#define ROM_BANK_0_LEN      0x4000
+
+#define ROM_BANK_N_START    0x4000
+#define ROM_BANK_N_END      0x7FFF
+#define ROM_BANK_N_LEN      0x4000
+
+#define VRAM_START          0x8000
+#define VRAM_END            0x9FFF
+#define VRAM_LEN            0x2000
+
+#define ERAM_START          0xA000
+#define ERAM_END            0xBFFF
+#define ERAM_LEN            0x2000
+
+#define WRAM_START          0xC000
+#define WRAM_END            0xDFFF
+#define WRAM_LEN            0x2000
+
+#define ECHO_START          0xE000
+#define ECHO_END            0xFDFF
+#define ECHO_LEN            0x1DFF
+
+#define OAM_START           0xFE00
+#define OAM_END             0xFE9F
+#define OAM_LEN             0x9F
+
+#define UNUSABLE_START      0xFEA0
+#define UNUSABLE_END        0xFEFF
+#define UNUSABLE_LEN        0x5F
+
+#define IO_REG_START        0xFF00
+#define IO_REG_END          0xFF7F
+#define IO_REG_LEN          0x7F
+
+#define HRAM_START          0xFF80
+#define HRAM_END            0xFFFE
+#define HRAM_LEN            0x7E
+
+#define IE_REG              0xFFFF
+
 #endif

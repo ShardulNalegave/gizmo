@@ -13,6 +13,8 @@ set(LIB_SRCS
     src/interrupts.c
     src/joypad.c
     src/cartridge.c
+    src/cartridge/rom_only.c
+    src/cartridge/mbc1.c
     src/log.cc)
 
 add_library(gizmo STATIC ${LIB_SRCS})

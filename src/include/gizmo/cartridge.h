@@ -27,18 +27,18 @@ struct gizmo_cartridge_s {
     gizmo_cart_type_t type;
     char title[16];
 
-    uint8_t **rom;
+    uint8_t *rom;
     uint8_t num_rom_banks;
     size_t rom_size;
-
-    uint8_t **ram_banks;
-    uint8_t num_ram_banks;
 
     void *state;
 
     uint8_t (*read)(struct gizmo_cartridge_s *cart, uint16_t addr);
     void (*write)(struct gizmo_cartridge_s *cart, uint16_t addr, uint8_t value);
     void (*destroy)(struct gizmo_cartridge_s *cart);
+
+    bool (*save_ram)(struct gizmo_cartridge_s *cart, const char *path);
+    bool (*load_ram)(struct gizmo_cartridge_s *cart, const char *path);
 };
 
 gizmo_cartridge_t* gizmo_cartridge_create(void);

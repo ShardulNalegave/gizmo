@@ -6,6 +6,7 @@
 #include "string.h"
 
 #include "gizmo/cartridge/rom_only.h"
+#include "gizmo/cartridge/mbc1.h"
 
 static inline bool gizmo_cartridge_read_rom(gizmo_cartridge_t *cart, const char *path) {
     FILE *file = fopen(path, "rb");
@@ -43,6 +44,7 @@ gizmo_cartridge_t* gizmo_cartridge_create(void) {
 
 void gizmo_cartridge_destroy(gizmo_cartridge_t *cart) {
     if (!cart) return;
+    cart->destroy(cart);
     free(cart->rom);
     free(cart);
 }
@@ -53,15 +55,20 @@ bool gizmo_cartridge_load(gizmo_cartridge_t *cart, const char* rom_path) {
 
     // read title
     memcpy(cart->title, &cart->rom[CART_HEADER_TITLE], 16);
+    
+    // rom banks
+    cart->num_rom_banks = 0b10 << cart->rom[CART_HEADER_ROM_SIZE];
 
     // read cartridge type
-    switch (cart->rom[0][CART_HEADER_CARTRIDGE_TYPE]) {
+    switch (cart->rom[CART_HEADER_CARTRIDGE_TYPE]) {
         case CART_ROM_ONLY:
             return gizmo_cartridge_load_rom_only(cart);
 
         case CART_MBC1:
         case CART_MBC1_RAM:
         case CART_MBC1_RAM_BATTERY:
+            return gizmo_cartridge_load_mbc1(cart);
+
         case CART_MBC2:
         case CART_MBC2_BATTERY:
         case CART_MBC3:
@@ -72,7 +79,7 @@ bool gizmo_cartridge_load(gizmo_cartridge_t *cart, const char* rom_path) {
         case CART_MBC5_RAM_BATTERY:
         case CART_MBC6:
         default:
-            CRITICAL("cartridge has an invalid type");
+            CRITICAL("cartridge has an invalid/unsupported type");
             return false;
     }
 
@@ -89,5 +96,12 @@ void gizmo_cartridge_write(gizmo_cartridge_t *cart, uint16_t addr, uint8_t value
     return cart->write(cart, addr, value);
 }
 
-bool gizmo_cartridge_save_ram(gizmo_cartridge_t *cart, const char *path);
-bool gizmo_cartridge_load_ram(gizmo_cartridge_t *cart, const char *path);
+bool gizmo_cartridge_save_ram(gizmo_cartridge_t *cart, const char *path) {
+    if (!cart) return false;
+    return cart->save_ram(cart, path);
+}
+
+bool gizmo_cartridge_load_ram(gizmo_cartridge_t *cart, const char *path) {
+    if (!cart) return false;
+    return cart->load_ram(cart, path);
+}
