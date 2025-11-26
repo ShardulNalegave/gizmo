@@ -8,23 +8,18 @@
 #include "gizmo/types.h"
 
 struct gizmo_system_s {
+    gizmo_memory_t *memory;
     gizmo_cpu_t *cpu;
     gizmo_ppu_t *ppu;
     gizmo_timer_t *timer;
     gizmo_cartridge_t *cartridge;
     gizmo_joypad_t *joypad;
     gizmo_interrupts_t *interrupts;
-    
-    uint8_t wram[WRAM_LEN];
-    uint8_t hram[HRAM_LEN];
-    
-    uint64_t cycles;
-    bool running;
 };
 
 gizmo_system_t* gizmo_system_create(void);
 void gizmo_system_destroy(gizmo_system_t *sys);
-bool gizmo_system_load_rom(gizmo_system_t *sys, const uint8_t *rom_data, size_t size);
+bool gizmo_system_load_rom(gizmo_system_t *sys, const char* rom_path);
 void gizmo_system_reset(gizmo_system_t *sys);
 
 void gizmo_system_step(gizmo_system_t *sys);  // Execute one instruction

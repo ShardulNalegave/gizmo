@@ -22,13 +22,4 @@ void gizmo_cpu_reset(gizmo_cpu_t *cpu);
 // Execute an instruction
 uint8_t gizmo_cpu_step(gizmo_cpu_t *cpu);
 
-uint8_t gizmo_cpu_read8(gizmo_cpu_t *cpu, uint16_t addr);
-void gizmo_cpu_write8(gizmo_cpu_t *cpu, uint16_t addr, uint8_t value);
-
-uint16_t gizmo_cpu_read16(gizmo_cpu_t *cpu, uint16_t addr);
-void gizmo_cpu_write16(gizmo_cpu_t *cpu, uint16_t addr, uint16_t value);
-
-void gizmo_cpu_push(gizmo_cpu_t *cpu, uint16_t value);
-uint16_t gizmo_cpu_pop(gizmo_cpu_t *cpu);
-
 #endif

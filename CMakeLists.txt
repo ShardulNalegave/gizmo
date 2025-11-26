@@ -9,8 +9,10 @@ add_subdirectory(vendor/spdlog EXCLUDE_FROM_ALL)
 
 set(LIB_SRCS
     src/cpu.c
+    src/memory.c
     src/timer.c
     src/interrupts.c
+    src/io.c
     src/joypad.c
     src/cartridge.c
     src/cartridge/rom_only.c
