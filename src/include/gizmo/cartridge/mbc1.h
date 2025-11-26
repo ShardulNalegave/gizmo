@@ -6,17 +6,16 @@
 #include "stdbool.h"
 #include "gizmo/cartridge.h"
 
-#define CART_MBC1_BANKING_MODE_SIMPLE   0
-#define CART_MBC1_BANKING_MODE_ADVANCED 1
-
 typedef struct {
     uint8_t *ram;
     uint8_t num_ram_banks;
+    uint8_t rom_bank_mask;
+    uint8_t ram_bank_mask;
 
     bool ram_enable;
-    uint8_t rom_bank_number;    // 5-bit register
-    uint8_t ram_bank_number;    // 2-bit register (also used as upper bits i.e. 5,6 of rom bank register)
-    uint8_t banking_mode;       // 1-bit register
+    uint8_t rom_bank_lower;  // 5-bit register
+    uint8_t bank_upper;      // 2-bit register
+    uint8_t banking_mode;    // 0 = simple, 1 = advanced
 } gizmo_cartridge_mbc1_state_t;
 
 bool gizmo_cartridge_load_mbc1(gizmo_cartridge_t *cart);
