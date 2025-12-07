@@ -25,7 +25,10 @@ void gizmo_system_reset(gizmo_system_t *sys);
 void gizmo_system_step(gizmo_system_t *sys);  // Execute one instruction
 void gizmo_system_run_frame(gizmo_system_t *sys);  // Run until VBlank
 
-uint8_t gizmo_system_read(gizmo_system_t *sys, uint16_t addr);
-void gizmo_system_write(gizmo_system_t *sys, uint16_t addr, uint8_t value);
+uint8_t gizmo_system_read8(gizmo_system_t *sys, uint16_t addr);
+void gizmo_system_write8(gizmo_system_t *sys, uint16_t addr, uint8_t value);
+
+uint16_t gizmo_system_read16(gizmo_system_t *sys, uint16_t addr);
+void gizmo_system_write16(gizmo_system_t *sys, uint16_t addr, uint16_t value);
 
 #endif

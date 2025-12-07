@@ -8,6 +8,7 @@ add_subdirectory(vendor/imgui EXCLUDE_FROM_ALL)
 add_subdirectory(vendor/spdlog EXCLUDE_FROM_ALL)
 
 set(LIB_SRCS
+    src/system.c
     src/cpu.c
     src/memory.c
     src/timer.c
@@ -17,6 +18,7 @@ set(LIB_SRCS
     src/cartridge.c
     src/cartridge/rom_only.c
     src/cartridge/mbc1.c
+    src/instructions.c
     src/log.cc)
 
 add_library(gizmo STATIC ${LIB_SRCS})

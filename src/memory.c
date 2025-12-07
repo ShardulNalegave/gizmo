@@ -79,7 +79,7 @@ void gizmo_memory_write8(gizmo_memory_t *memory, uint16_t addr, uint8_t value) {
         // TODO: Implement the unusable section of memory (OAM blocks, etc)
     } else if (addr >= IO_REG_START && addr <= IO_REG_END) {
         return gizmo_io_registers_write(memory->sys, addr, value);
-    } else if (addr >= HRAM_START && addr <+ HRAM_END) {
+    } else if (addr >= HRAM_START && addr <= HRAM_END) {
         memory->hram[addr - HRAM_START] = value;
     } else { // Interrupt Enable Register
         memory->sys->interrupts->ie = value;
